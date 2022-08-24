@@ -1,0 +1,65 @@
+<h1>Communication entre composants</h1>
+
+
+<p>On parle de composant <i>Enfant</i> quand on utilise un composant dans un autre ( son parent ),
+via sa balise / son selecteur</p>
+
+
+<p>Un composant enfant peut lui même être parent d'un composant.</p>
+<p>Un composant peut utiliser plusieurs composants enfants, et réutiliser plusieurs fois le même composant.</p>
+
+
+<h2>Communication descendante</h2>
+
+<p>Communication du parent vers l'enfant</p>
+
+<app-enfant></app-enfant>
+<app-enfant title="Composant enfant" optionnel="Input optionnel"></app-enfant>
+<app-enfant [title]="product" [optionnel]="description"></app-enfant>
+
+<p>Pour envoyer des données d'un parent vers un enfant, on utilise les Input</p>
+<p>Un composant peut avoir un nombre illimité d'inputs.</p>
+<p>Les Inputs peuvent avoir n'importe quel type : primitifs, tableaux, objets, interfaces, ...</p>
+
+
+<h2>Communication ascendante</h2>
+
+<p>Communication de l'enfant vers le parent</p>
+<p>L'enfant ne passe jamais de données de manières permanente au parent.</p>
+<p>La communication de l'enfant vers le parent se passe sous forme d'événement.</p>
+
+<app-enfant title="Gestion d'Emit" (emitter)="emitIntercept()"></app-enfant>
+
+<app-enfant title="Emit avec données" (message_emitter)="interceptMessage($event)"></app-enfant>
+
+<h4>Evenement JS </h4>
+<button (click)="displayEvent($event)">Voir l'evenement</button>
+
+
+<h2>Mise en pratique</h2>
+
+<div class="grid">
+  <app-product
+    *ngFor="let _p of products"
+    [product]="_p"
+    (modify)="modifyProduct($event)"
+  ></app-product>
+</div>
+
+
+<h2>Slots ou Projetion de contenu</h2>
+
+
+<app-another-enfant>
+  <h3>Slot simple</h3>
+  <p>Avec les slots, on peut mettre du HTML dans les balises d'un composant</p>
+  <p>Dans le composant enfant, on interpréte ce HTML dans une balise ng-content.</p>
+  <p>On peut même interpréter des composants !</p>
+  <app-counter></app-counter>
+
+  <div slot-nommee>
+    <p>Ici, une deuxième slot.</p>
+    <p>Cette slot est nommée.</p>
+  </div>
+</app-another-enfant>
+

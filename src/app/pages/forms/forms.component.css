@@ -1,0 +1,15 @@
+nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 70%;
+  margin: 50px auto;
+}
+
+a:link, a:visited {
+  text-align: center;
+  color: var(--main);
+}
+
+a:first-child {
+  border-right: solid 1px;
+}

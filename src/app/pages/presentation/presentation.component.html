@@ -1,0 +1,65 @@
+<h1>Présentation</h1>
+
+
+<h2>Intégration de composants :</h2>
+<app-counter></app-counter>
+<app-counter></app-counter>
+
+
+<h2>Interpolation</h2>
+
+<p>On peut interpoler du JS ( du TS ) grâce aux <b>balises moustaches</b></p>
+
+<ul>
+  <li>1 + 1 = {{ 1 + 1 }}</li>
+  <li>Donnée du ts : {{ data }}</li>
+  <li>User:
+    <ul>
+      <li>Nom: {{user.nom}}</li>
+      <li>Age : {{user.age}}</li>
+    </ul>
+  </li>
+
+</ul>
+
+
+<h2>Property Binding</h2>
+
+<p>Tous les attributs HTML existants peuvent être renseigner dynamiquement, en interprétant
+  du JS. Pour ça, il faut mettre le nom de l'attribut entre []
+</p>
+
+<p [class]="ma_classe">Exemple : [class]='nom_de_variable'</p>
+
+
+<figure>
+  <img [src]="image.url" [alt]="image.description"/>
+  <figcaption>{{image.title}}</figcaption>
+</figure>
+
+
+<h2>Data Binding : classes</h2>
+
+<p class="classe1 classe2">Syntaxe classique</p>
+
+<p [class]="ma_classe">Property Binding</p>
+
+<p [class]="(condition)? ma_classe : 'classe_bidon' ">Ternaire</p>
+
+<!-- attribute binding -->
+<p [class.nom-classe]="condition">Attribut la classe 'nom-classe' si la condition est vrai</p>
+
+<!-- NgClass :  /
+Attribut ( directive angular ) :
+  - string // du js qui retourne une string comme [class]
+  - tableau de string : brut, ou via une variable
+  _ objet : clef : nom de la classe, valeur : condition
+
+-->
+
+<p [ngClass]=" 'myClasse' ">NgClass : string brute</p>
+<p [ngClass]="ma_classe">NgClass : string via une variable</p>
+
+<p [ngClass]="['classe1', ma_classe]">NgClass: array de strings</p>
+
+<p [ngClass]="{ toto: condition, bidule : true}">NgClass: objet de classes conditionnelles</p>

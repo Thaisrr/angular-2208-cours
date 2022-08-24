@@ -1,0 +1,16 @@
+figure {
+  width: 50%;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+}
+
+figcaption {
+  color: var(--main-lighter);
+}
+
+h3 {
+  text-decoration: underline;
+}

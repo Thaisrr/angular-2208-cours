@@ -1,0 +1,34 @@
+.card {
+  box-shadow: 3px 3px 0 black;
+  border-radius: 5px;
+  border: solid black 2px;
+  font-family: sans-serif;
+  height: 350px;
+  overflow: hidden;
+}
+
+.c-header {
+  height: 40%;
+  overflow: hidden;
+}
+
+.c-header img {
+  width: 100%;
+}
+
+.c-body {
+  padding: 15px;
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  color : var(--main);
+}
+
+.split:first-child {
+  color: var(--main-lighter);
+}

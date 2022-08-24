@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Montserrat+Alternates&display=swap');
+@import "styles-variables.css";
+
+
+body {
+  margin: 0;
+  font-family: var(--main-font);
+}
+
+h1, h2 {
+  font-family: var(--title-font);
+}
+
+h1 {
+  color: var(--main);
+}
+
+h2 {
+  color: var(--pop);
+  margin: 50px auto 30px;
+}
+
+h3 {
+  color: var(--main-darker);
+}
+
+* {box-sizing: border-box;}
+
+main {
+  width: 80%;
+  margin: 50px auto;
+}
+
+
+button {
+  background-color: #fceb66;
+  padding: 5px 10px;
+  border: solid 2px black;
+  box-shadow: 2px 2px 0 black;
+  border-radius: 5px;
+}
+
+input {
+  height: 2em;
+  border: solid black 2px;
+  border-radius: 5px;
+}
+
+label {
+  font-family: var(--title-font);
+  font-size: 1.2em;
+}
+
+
+/*
+ng-touched : l'input à déjà perdu le focus
+ng-untouched : n'a jamais perdu le focus
+
+ng-pristine: l'input n'a jamais reçu d'intéraction
+ng-dirty: l'input à déjà reçu une intérraction
+
+ng-valid: la valeur de l'input est valide
+ng-invalid : la valeur de l'input est invalide
+*/
+
+/* ne marche pas, mauvais selecteur */
+p:has(input.ng-touched.ng-valid)::after  {
+  content: ✔️;
+  padding-left: 20px;
+}
+
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+input.ng-touched.ng-valid {
+  border-color: green;
+}
+
+/* ne marche pas, mauvais selecteur */
+input.ng-touched.ng-invalid::after {
+  content: ❌;
+  padding-right: 20px;
+}
+
+.error {
+  color: red;
+}

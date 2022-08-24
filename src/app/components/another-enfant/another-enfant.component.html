@@ -1,0 +1,10 @@
+<div class="dialog">
+  <div>Entête fixe</div>
+  <div class="contenu">
+    <ng-content></ng-content>
+  </div>
+  <div>
+    <p>Footer</p>
+    <ng-content select="[slot-nommee]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+
+/* Ne s'appliquera pas aux composants enfants, le style est étenche, encapsulé */
+h3 {
+  text-decoration: underline !important;
+  color: green !important;
+}

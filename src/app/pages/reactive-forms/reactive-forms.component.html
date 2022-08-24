@@ -1,0 +1,99 @@
+<h1>Formulaires Réactifs</h1>
+
+<h2>Form Control</h2>
+
+<p>
+  <label for="book">Livre</label>
+  <input id="book" [formControl]="book_title"/>
+  <button [disabled]="book_title.invalid" (click)="saveBook()">Save</button>
+</p>
+<p class="error"
+*ngIf="book_title.touched && book_title.invalid">
+  Ce champs est invalide :
+  <span *ngIf="book_title.hasError('required')">
+    champs obligatoire
+  </span>
+  <span *ngIf="book_title.hasError('minlength') || book_title.hasError('maxlength')">
+    entre 2 et 50 caractères
+  </span>
+</p>
+
+<p *ngIf="favorite">Votre livre : <b>{{favorite}}</b></p>
+
+
+<h2>Form Group</h2>
+
+
+<form [formGroup]="game_form" (ngSubmit)="saveGame()">
+  <p>
+    <label for="title">Titre</label>
+    <input id="title" formControlName="title">
+    <small class="error" *ngIf="game_form.controls['title'].touched && game_form.controls['title'].invalid">
+      Ce champs est obligatoire
+    </small>
+  </p>
+  <p>
+    <label for="studio">Studio</label>
+    <input id="studio" formControlName="studio">
+  </p>
+  <p>
+    <label for="description">Description</label>
+    <input id="description" formControlName="description">
+  </p>
+  <p>
+    <label for="year">Année</label>
+    <input type="number" id="year" formControlName="year">
+    <small class="error" *ngIf="getYearError()">
+      {{getYearError()}}
+    </small>
+  </p>
+  <p>
+    <button [disabled]="game_form.invalid">Sauvegarder</button>
+  </p>
+</form>
+
+
+
+<h2>Formulaires complexes</h2>
+
+<form [formGroup]="formation_form" (ngSubmit)="saveFormation()">
+
+  <p>
+    <label for="name">Nom</label>
+    <input id="name" formControlName="name">
+  </p>
+  <p>
+    <label for="finished">Terminée ?</label>
+    <input type="checkbox" id="finished" formControlName="finished">
+  </p>
+  <fieldset formGroupName="trainer">
+    <legend>Formateur / Formatrice</legend>
+
+    <p>
+      <label for="first">Prénom</label>
+      <input id="first" formControlName="firstname">
+    </p>
+    <p>
+      <label for="last">Nom</label>
+      <input id="last" formControlName="lastname">
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Sujets</legend>
+
+    <p *ngFor="let t of topics">
+      <label [for]="t.value">{{t.name}}</label>
+      <input type="checkbox" [id]="t.value" [value]="t.value" name="topics" (change)="updateTopics($event)" >
+    </p>
+
+
+
+  </fieldset>
+
+
+  <p>
+    <button>Sauvegarder</button>
+  </p>
+
+</form>

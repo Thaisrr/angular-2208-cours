@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="c-header">
+    <img [src]="product.image"/>
+  </div>
+  <div class="c-body">
+    <h3>{{product.name}}</h3>
+    <p>{{product.description}}</p>
+    <p class="split">
+      <span *ngIf="product.quantity > 0">
+        {{product.quantity}} restant
+      </span>
+      <span *ngIf="product.quantity <= 0">
+        plus dispo :(
+      </span>
+      <span class="price">{{product.price}}€</span>
+    </p>
+    <p>
+      <button [disabled]="product.quantity <= 0" (click)="addToBasket()">
+        Ajouter au panier
+      </button>
+    </p>
+
+  </div>
+</div>

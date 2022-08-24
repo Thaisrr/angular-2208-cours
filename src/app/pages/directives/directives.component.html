@@ -1,0 +1,70 @@
+<h1>Les directives</h1>
+
+<p>Une directive, c'est des attributs Angular qu'ondemand_video
+  applique sur des balises HTML. ( Exemple : ngClass).
+</p>
+
+<p>Les directives Angular sont préfixées par <i>ng</i>: ngStyle, ngClass...</p>
+
+<h2>Affichage conditionnel</h2>
+
+<!-- Pour modifier un texte simple et court-->
+<h3>Ternaire</h3>
+<p>Vous êtes {{ is_logged? 'connecté(e)s': 'pas connecté(e)s'}}</p>
+
+
+<h3>ngIf</h3>
+
+<p *ngIf="is_logged">Bienvenue Jean Michel</p>
+
+<p *ngIf="!is_logged">Vous êtes anonyme</p>
+
+<h3>ngElse </h3>
+
+<p *ngIf="is_logged; else notLogged">Encore Bienvenue Jean Michel</p>
+
+<ng-template #notLogged>
+  <div>
+    <p>Vous n'êtes pas connecté(e)s</p>
+    <p><a href="#">Connexion</a></p>
+  </div>
+</ng-template>
+
+<button (click)="login()">{{is_logged? 'Déconnexion': 'Connexion'}}</button>
+
+
+<h2>Les listes</h2>
+
+<h3> Simples</h3>
+
+<ul>
+  <li *ngFor="let _livre of livres">{{ _livre }}</li>
+</ul>
+
+<p>Le ngFor se place sur l'élément à répéter.</p>
+<p>Cet élément peut-être n'importe quelle balise HTML, ça peut-être un block
+  de balises, ça peut également être un composant.
+</p>
+
+
+<h3>Options</h3>
+
+<div *ngFor="let _livre of livres;
+        let is_first = first;
+        let is_last = last;
+        let is_odd = odd;
+        let is_even = even;
+        let index = index;
+      "
+>
+
+  <h4>{{_livre}}</h4>
+  <p>Index : {{index}}</p>
+  <ul>
+    <li>Premier livre de ma liste ? {{is_first}}</li>
+    <li>Dernier ? {{is_last}}</li>
+    <li>Paire ? {{is_odd}}</li>
+    <li>Impaire ? {{ is_even}}</li>
+  </ul>
+  <hr>
+</div>

@@ -1,0 +1,78 @@
+<h1>Formulaires</h1>
+
+<p>Template Driven Forms</p>
+
+<h2>En JS classique </h2>
+
+<p>
+  <label for="book">Livre préféré</label>
+  <input id="book" placeholder="..." [value]="book" (input)="updateBook($event)"/>
+  <button (click)="saveBook()">Save</button>
+</p>
+<p>Vote livre préféré : <b>{{book}}</b></p>
+
+<h2>En Angular</h2>
+<p>[(ngModel)] fait à la fois</p>
+<ul>
+  <li>[value] ( ou [ngModel] en Angular )</li>
+  <li>(input) (ou (ngModelChange) en Angular )</li>
+</ul>
+<p>Il lie la valeur de l'input et une variable, c'est du <b>two way binding</b></p>
+
+<p>
+  <label for="book">Livre préféré</label>
+  <input id="book" placeholder="..." [(ngModel)]="book2"/>
+  <button (click)="saveBook2()">Save</button>
+</p>
+<p>Vote livre préféré : <b>{{book2}}</b></p>
+
+
+<h2>Dans un formulaire</h2>
+
+<form #gameForm="ngForm" (ngSubmit)="saveGame(); gameForm.reset()" >
+  <p>
+    <label for="title">Titre</label>
+    <input id="title" name="title" [(ngModel)]="game.title" required minlength="3"/>
+    <small class="error" *ngIf="gameForm.controls['title'].invalid && gameForm.controls['title'].touched">
+      Avec un titre, ce serait mieux !
+    </small>
+  </p>
+  <p>
+    <label for="studio">Studio</label>
+    <input id="studio" name="studio" [(ngModel)]="game.studio" required/>
+    <small class="error" *ngIf="gameForm.controls['studio'].invalid && gameForm.controls['studio'].touched">
+      Il faut rendre à César ce qui appartient à César !
+    </small>
+  </p>
+  <p>
+    <label for="description">Description</label>
+    <textarea id="description" name="description" [(ngModel)]="game.description"></textarea>
+  </p>
+
+  <p>
+    <label for="year">Année</label>
+    <input id="year" name="year" type="number" required min="1900" max="2025" [(ngModel)]="game.year"/>
+    <small class="error" *ngIf="gameForm.controls['year'].touched">
+      <span *ngIf="gameForm.controls['year'].hasError('required')">Veuillez entrer une année</span>
+      <span *ngIf="gameForm.controls['year'].hasError('min') || gameForm.controls['year'].hasError('max')">
+        Vous êtes sûr de vous ?
+      </span>
+
+    </small>
+  </p>
+  <p>
+    <button [disabled]="!gameForm.form.valid">Sauvegarder le jeu</button>
+  </p>
+</form>
+
+
+<h2>Jeux :</h2>
+
+<div class="grid">
+  <div *ngFor="let game of all_games">
+    <h3>{{game.title}}</h3>
+    <p><i>{{game.studio}}</i> -- {{game.year}}</p>
+    <p>{{game.description}}</p>
+  </div>
+</div>
+

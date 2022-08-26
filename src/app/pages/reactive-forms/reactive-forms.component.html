@@ -61,11 +61,23 @@
   <p>
     <label for="name">Nom</label>
     <input id="name" formControlName="name">
+    <small class="error" *ngIf="f_name.touched">
+      <span *ngIf="f_name.hasError('required')">Titre obligatoire</span>
+      <span *ngIf="f_name.hasError('invalidName')">Nom invalide !</span>
+    </small>
   </p>
   <p>
     <label for="finished">Terminée ?</label>
-    <input type="checkbox" id="finished" formControlName="finished">
+    <input type="checkbox" id="finished" formControlName="finished" >
   </p>
+  <p>
+    <label>Compte Rendu</label>
+    <input formControlName="cr">
+    <small class="error" *ngIf="  formation_form.controls['cr'].invalid">
+      Si la formation est terminée vous devez remplir le compte rendu !
+    </small>
+  </p>
+
   <fieldset formGroupName="trainer">
     <legend>Formateur / Formatrice</legend>
 
@@ -79,7 +91,7 @@
     </p>
   </fieldset>
 
-  <fieldset>
+  <fieldset formArrayName="topics">
     <legend>Sujets</legend>
 
     <p *ngFor="let t of topics">
@@ -87,7 +99,24 @@
       <input type="checkbox" [id]="t.value" [value]="t.value" name="topics" (change)="updateTopics($event)" >
     </p>
 
+  </fieldset>
 
+  <fieldset formArrayName="students">
+    <legend>Etudiants et Etudiantes</legend>
+
+    <div *ngFor="let s_control of students.controls; let i = index" [formGroupName]="i">
+      <p>
+        <label [for]="'s_first' + i">Prénom</label>
+        <input [id]="'s_first' + i" formControlName="firstname">
+      </p>
+      <p>
+        <label>Nom</label>
+        <input formControlName="lastname">
+      </p>
+      <hr>
+    </div>
+
+    <button type="button" (click)="addStudent()">Ajouter un(e) etudiant(e)</button>
 
   </fieldset>
 

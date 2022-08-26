@@ -3,7 +3,7 @@ export interface Formation {
   finished: boolean;
   topics?: string[];
   trainer?: Personn;
-  studiants?: Personn[];
+  students?: Personn[];
 }
 
 export interface Personn {

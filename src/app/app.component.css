@@ -4,3 +4,11 @@ h3 {
   text-decoration: underline !important;
   color: green !important;
 }
+
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 50px;
+  border-top: darkgray solid 1px;
+}

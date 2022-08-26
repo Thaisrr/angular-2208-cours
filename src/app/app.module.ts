@@ -16,7 +16,13 @@ import { FormulairesComponent } from './pages/formulaires/formulaires.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormsComponent } from './pages/reactive-forms/reactive-forms.component';
 import { FormsComponent } from './pages/forms/forms.component';
-
+import { DependancesComponent } from './pages/dependances/dependances.component';
+import { RainbowPipe } from './utils/pipes/rainbow.pipe';
+import { ProductFilterPipe } from './utils/pipes/product-filter.pipe';
+import { ObservablesComponent } from './pages/observables/observables.component';
+import { RequestsComponent } from './pages/observables/requests/requests.component';
+import {HttpClientModule} from '@angular/common/http';
+import { OperatorsComponent } from './pages/observables/operators/operators.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +38,20 @@ import { FormsComponent } from './pages/forms/forms.component';
     AnotherEnfantComponent,
     FormulairesComponent,
     ReactiveFormsComponent,
-    FormsComponent
+    FormsComponent,
+    DependancesComponent,
+    RainbowPipe,
+    ProductFilterPipe,
+    ObservablesComponent,
+    RequestsComponent,
+    OperatorsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

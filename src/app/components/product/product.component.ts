@@ -1,3 +1,4 @@
+import { PanierService } from './../../utils/services/panier.service';
 import { Product } from './../../utils/models/product';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
@@ -12,6 +13,8 @@ export class ProductComponent  {
 
   @Output() modify = new EventEmitter();
 
+  constructor(private panierService: PanierService) {}
+
   addToBasket() {
     // logique d'ajout au panier
 
@@ -20,6 +23,8 @@ export class ProductComponent  {
     copy.quantity--;
 
     this.modify.emit(copy);
+
+    this.panierService.addToBasket(copy);
   }
 
 }

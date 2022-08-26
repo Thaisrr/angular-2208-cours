@@ -1,0 +1,19 @@
+<h1>Présentation</h1>
+
+<p>Les Observables font partis de la librairie RXJS.</p>
+
+<p>Ce sont des fluxs asynchrones, qui peuvent envoyer plusieurs données.</p>
+
+<p>Pour récupérer les données, il faut souscrire au retour de l'Observable.</p>
+
+<p>Les observables peuvent envoyer 3 types de réponses :</p>
+<ul>
+  <li>Next : les données attendues</li>
+  <li>Error : en cas de soucis, elles arrêtent l'observable</li>
+  <li>Complete : indique que le flux se coupe, et qu'il n'y aura plus de données.</li>
+</ul>
+
+<p>
+  <b class="error">Attention :</b>
+  il faut se désabonner des fluxs ouverts ( ceux qui n'entrent pas dans le complete)
+</p>

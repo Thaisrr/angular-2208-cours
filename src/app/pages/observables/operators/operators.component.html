@@ -1,0 +1,24 @@
+<h1>Les opérateurs</h1>
+
+<h2>Simples</h2>
+
+<p>Valeurs émisent par data$ :</p>
+<ul>
+  <li  *ngFor="let d of datas">{{d}}</li>
+</ul>
+
+
+<h2>Character : </h2>
+
+<ul>
+  <li *ngFor="let n of [1, 2, 3, 4, 5]">
+    <a [routerLink]="['/observables/operators/' + n]">Perso {{n}}</a>
+  </li>
+</ul>
+
+
+<div *ngIf="character">
+  <h3>{{character.name}}</h3>
+  <p>Né.e en : {{character.birth_year}}</p>
+  <h4>{{character.planet.name}}</h4>
+</div>

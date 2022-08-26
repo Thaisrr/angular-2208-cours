@@ -1,6 +1,10 @@
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { Game } from './../formulaires/formulaires.component';
 import { Component } from '@angular/core';
-import {FormControl, Validators, FormGroup, FormArray} from '@angular/forms';
+import {FormControl, Validators, FormGroup, FormArray, Form} from '@angular/forms';
+import {Formation} from "../../utils/models/formation";
+import {  crValidator, formationNameValidator } from 'src/app/utils/directives/custom-validator.directive';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -29,7 +33,7 @@ export class ReactiveFormsComponent  {
 
   constructor() {
     this.game_form = new FormGroup({
-      title: new FormControl('', [Validators.required] ),
+      title: new FormControl('', [Validators.required]),
       description: new FormControl(),
       studio: new FormControl('', [Validators.required]),
       year: new FormControl(2000, [Validators.required, Validators.min(1900), Validators.max(2025)])
@@ -37,15 +41,51 @@ export class ReactiveFormsComponent  {
 
 
     this.formation_form = new FormGroup({
-      name: new FormControl(),
+      name: new FormControl('', [formationNameValidator(), Validators.required]),
       finished: new FormControl(false),
+      cr: new FormControl(),
       trainer: new FormGroup({
         firstname: new FormControl(),
         lastname: new FormControl()
       }),
-    topics: new FormArray([])
-    });
+      topics: new FormArray([]),
+      students: new FormArray([
+        new FormGroup({
+          firstname: new FormControl(),
+          lastname: new FormControl()
+        })
+      ])
+    }, [crValidator()]);
+
+   // const finished$: Observable<boolean> = of(this.formation_form.controls['finished'].value);
+    //this.formation_form.get('cr')?.setAsyncValidators([asyncCRValidator(finished$)]);
+
+
   }
+
+
+
+
+
+
+
+  get f_name() {
+    return this.formation_form.controls['name'];
+  }
+
+  get students() {
+    return this.formation_form.get('students') as FormArray;
+  }
+
+  addStudent() {
+    this.students.push(
+      new FormGroup({
+        firstname: new FormControl(),
+        lastname: new FormControl()
+      })
+    )
+  }
+
 
   updateTopics(e : Event) {
       const topics_array = this.formation_form.get('topics') as FormArray;
@@ -104,6 +144,7 @@ export class ReactiveFormsComponent  {
 
   saveFormation() {
     console.log(this.formation_form.value);
+    const formation: Formation = this.formation_form.value;
   }
 
 }

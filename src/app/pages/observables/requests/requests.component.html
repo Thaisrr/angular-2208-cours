@@ -1,0 +1,31 @@
+<h1>Requête HTTP</h1>
+
+<p>Pour faire des requêtes, on utilise le module HttpClientModule.</p>
+
+<p>Le service HttpClient permet de faire des requêtes en get, post, put, patch, delete, ect...</p>
+<p>Ces requêtes ne renvoient qu'une donnée ( un seul "next()" ), et se complete automatiquement.
+  Il n'y a donc pas besoin d'unsubscribe.
+</p>
+
+<h2>Joke API</h2>
+
+
+<p *ngIf="is_loading; else loaded">Chargement...</p>
+
+<ng-template #loaded>
+  <p *ngIf="joke">{{joke}}</p>
+  <p *ngIf="!joke">Oups, quelque chose s'est mal passé 😢</p>
+</ng-template>
+
+<h2>Users</h2>
+
+<div class="grid" *ngIf="users">
+  <div class="card" *ngFor="let u of users">
+    <h4>{{u.name}}</h4>
+    <p>Email : {{u.email}}</p>
+    <div>
+      <h5>{{u.company.name}}</h5>
+      <p>{{u.company.catchPhrase}}</p>
+    </div>
+  </div>
+</div>

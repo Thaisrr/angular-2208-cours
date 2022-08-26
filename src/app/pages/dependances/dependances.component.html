@@ -1,0 +1,60 @@
+<h1>Fichiers Angular</h1>
+
+<h2>Services</h2>
+
+<p>Vous avez {{ panierService.panier.length }} produits dans votre panier</p>
+
+<div class="grid">
+  <app-product
+    *ngFor="let _p of products | productFilter"
+    [product]="_p"
+  ></app-product>
+</div>
+
+<h2>Pipes</h2>
+
+<h3>Texte</h3>
+
+<p>Message : {{message}} </p>
+<p>Majuscules : {{ message | uppercase }}</p>
+<p>Minuscules : {{ message | lowercase }}</p>
+<p>Titre : {{ message | titlecase }}</p>
+
+<h3>Dates</h3>
+
+<p>Date : {{today}}</p>
+<p>Dates pipe : {{ today | date}}</p>
+<p>Short : {{ today | date: 'short'}}</p>
+<p>Medium : {{ today | date: 'medium'}}</p>
+<!-- short, medium, long, full -->
+<p>Personnalisé : {{ today | date : 'd/M/yyyy'}}</p>
+<p>Jour dans le mois {{today | date : 'd'}}</p>
+<p>Jour dans le mois {{today | date: 'dd'}}</p>
+<p>Jour de la semaine {{today | date: 'c'}}</p>
+<p>Heure ( 12h ) {{ today | date: 'h'}}</p>
+<p>Heure (24h) {{today | date: 'H'}}</p>
+<p>Minutes: {{today | date: 'mm'}}</p>
+<p>Mois : {{today | date: 'MM'}}</p>
+<p>Mois : {{ today | date: 'MMM'}}</p>
+<p>Mois : {{today | date: 'MMMM'}}</p>
+
+<p>{{today |date: 'cccc dd MMMM yyyy, H:mm:ss'}} </p>
+
+
+<h3>Nombres</h3>
+
+<p>Pi : {{PI}}</p>
+<!--
+  nombre mini de chiffres avant la virgule
+  .
+  nombre mini de chiffres après la virgule
+  -
+  nombre maxi de chiffres après la virgule
+-->
+<p>PI : {{PI | number: '1.0-2'}}</p>
+<p>35 : {{ 35 | number: '1.0-2'}}</p>
+<p>450.000001 : {{450.000001 | number: '1.0-2'}}</p>
+
+<h3>Pipe personnalisés</h3>
+
+<p>{{message | rainbow | titlecase}}</p>
